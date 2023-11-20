@@ -36,6 +36,7 @@ Store::~Store()
         delete product;
     }
     delete owner;
+    delete console;
 }
 void Store::addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age) {
     Person* person;
@@ -1345,98 +1346,67 @@ void Store::showMenu()
 {
     int choice;
     do {
-        system("CLS");
-        cout << "_____Person Store_______" << endl;
-        cout << "1. Register a Client" << endl;
-        cout << "2. Register a Staff Member" << endl;
-        cout << "3. Register the Owner" << endl;
-        cout << "4. Edit Person Information" << endl;
-        cout << "5. Show Person Info" << endl;
-        cout << "6. Show Client by type (Premium or Standard)" << endl;
-        cout << "7. make a purchase" << endl;
-        cout << "8. Register a product" << endl;
-        cout << "9. show Product" << endl;
-        cout << "10. Raise salary of staff member" << endl;
-        cout << "11. Search a product" << endl;
-        cout << "12. Show full inventory" << endl;
-        cout << "0. Exit the menu" << endl;
-        cout << "Please enter a valid option: ";
-        cin >> choice;
+        console->showMainMenu();
+        choice = console->selectOption();
         switch (choice) {
         case 0:
-            cout << "Thank you for your Store!!!" << endl;
+            console->completedProgram();
             break;
         case 1:
             registerClient();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 2:
             registerStaff();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 3:
             registerOwner();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 4:
             EditPersonInfo();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 5:
             showPersonInfo();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 6:
             showClientByType();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 7:
             purchaseMenu();
-            _getch();
+            system("Pause");
             break;
         case 8:
             registerAProduct();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 9:
             showProduct();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 10:
             raiseSalaryDependingOnNumberSold();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 11:
             searchAProduct();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         case 12:
             showFullInventory();
-            cout << "Press any key to return to the menu!";
-            _getch();
+            system("Pause");
             break;
         default:
-            cout << "Invalid choice. Please enter a valid choice next time!" << endl;
-            cout << "Press any key to return to the menu!";
-            _getch();
+            console->invalidSelection();
+            system("Pause");
         }
     } while (choice != 0);
-
-
-
 }
 void Store::run()
 {
-
     showMenu();
 }

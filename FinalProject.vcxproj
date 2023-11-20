@@ -105,6 +105,7 @@
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Clothing.h" />
+    <ClInclude Include="Console.h" />
     <ClInclude Include="LoadData.h" />
     <ClInclude Include="Owner.h" />
     <ClInclude Include="pch.h" />
@@ -121,6 +122,7 @@
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Clothing.cpp" />
+    <ClCompile Include="Console.cpp" />
     <ClCompile Include="LoadData.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Owner.cpp" />
