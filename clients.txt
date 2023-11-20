@@ -1,0 +1,11 @@
+1425
+juan
+perez
+1
+50
+juanPerez@gmail.com
+oquendo142
+142543
+true
+10
+20

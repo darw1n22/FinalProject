@@ -1,11 +1,11 @@
 ﻿#include "pch.h"
+#include <iostream>
+#include "Store.h"
 
-using namespace winrt;
-using namespace Windows::Foundation;
-
+using namespace std;
 int main()
 {
-    init_apartment();
-    Uri uri(L"http://aka.ms/cppwinrt");
-    printf("Hello, %ls!\n", uri.AbsoluteUri().c_str());
+    Store playHard;
+    playHard.run();
+    return EXIT_SUCCESS;
 }

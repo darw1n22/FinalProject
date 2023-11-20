@@ -101,13 +101,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Accessory.h" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Clothing.h" />
+    <ClInclude Include="LoadData.h" />
+    <ClInclude Include="Owner.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="Sale.h" />
+    <ClInclude Include="Shoe.h" />
+    <ClInclude Include="Staff.h" />
+    <ClInclude Include="Store.h" />
+    <ClInclude Include="TxtLocalLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Accessory.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="Clothing.cpp" />
+    <ClCompile Include="LoadData.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Owner.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Sale.cpp" />
+    <ClCompile Include="Shoe.cpp" />
+    <ClCompile Include="Staff.cpp" />
+    <ClCompile Include="Store.cpp" />
+    <ClCompile Include="TxtLocalLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
