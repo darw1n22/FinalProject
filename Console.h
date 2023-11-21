@@ -12,5 +12,7 @@ public:
 	int selectOption();
 	void completedProgram();
 	void invalidSelection();
+	void showProductsMenu();
+	void showTitlesOfProducts(string productType);
 };
 

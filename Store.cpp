@@ -273,7 +273,6 @@ void Store::registerStaff()
     Staff* staff = new Staff(id, name, lastname, gender, email, address, phone, age, jobTitle, profession, salary, experience, productsSold);
     staffs.push_back(staff);
 }
-
 void Store::editStaffInfo()
 {
     long id;
@@ -451,7 +450,6 @@ void Store::editOwnerInfo()
         return;
     }
 }
-
 void Store::editSalary()
 {
     long id;
@@ -526,7 +524,6 @@ void Store::EditPersonInfo()
             _getch();
         }
     } while (choice != 5);
-
 }
 void Store::showPersonInfo()
 {
@@ -585,10 +582,7 @@ void Store::showClientByType()
             }
         }
         cout << "Number of standard clients: " << num_standard << endl;
-
     }
-
-
 }
 void Store::makePurchase()
 {
@@ -661,11 +655,6 @@ void Store::makePurchase()
     cout << "Product description: " << productToBuy->getDescription() << endl;
     cout << "Total Price of the items: " << productPrice << endl;
     cout << "Total Purchases of the client: " << TotalPurchases << endl;
-
-
-
-
-
 }
 void Store::purchaseMenu()
 {
@@ -1268,79 +1257,81 @@ void Store::searchAProduct()
 void Store::showFullInventory()
 {
     int typeOption;
-    cout << "1. Clothing" << endl;
-    cout << "2. Shoes" << endl;
-    cout << "3. Balls" << endl;
-    cout << "4. Accessories" << endl;
-    cout << "5. All products" << endl;
-    cin >> typeOption;
-    switch (typeOption)
-    {
-    case 1:
-    {
-        for (Clothing* clothing : clothes)
+    do {
+        console->showProductsMenu();
+        typeOption = console->selectOption();
+        switch (typeOption)
         {
-            clothing->showInfo();
-            cout << "--------------------------------------------------------" << endl;
-        }
-        break;
-    }
-    case 2:
-    {
-        for (Shoe* shoe : shoes)
+        case 0:
+            break;
+        case 1:
         {
-            shoe->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->showTitlesOfProducts("CLOTHING");
+            for (Clothing* clothing : clothes)
+            {
+                clothing->showInfo();
+            }
+            break;
         }
-        break;
-    }
-    case 3:
-    {
-        for (Ball* ball : balls)
+        case 2:
         {
-            ball->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->showTitlesOfProducts("SHOES");
+            for (Shoe* shoe : shoes)
+            {
+                shoe->showInfo();
+            }
+            break;
         }
-        break;
-    }
-    case 4:
-    {
-        for (Accessory* accessory : accessories)
+        case 3:
         {
-            accessory->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->showTitlesOfProducts("BALLS");
+            for (Ball* ball : balls)
+            {
+                ball->showInfo();
+            }
+            break;
         }
-        break;
-    }
-    case 5:
-    {
-        cout << "*************** Clothes ***************" << endl;
-        for (Clothing* clothing : clothes)
+        case 4:
         {
-            clothing->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->showTitlesOfProducts("ACCESSORIES");
+            for (Accessory* accessory : accessories)
+            {
+                accessory->showInfo();
+            }
+            break;
         }
-        cout << "*************** Shoes ***************" << endl;
-        for (Shoe* shoe : shoes)
+        case 5:
         {
-            shoe->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->showTitlesOfProducts("CLOTHING");
+            for (Clothing* clothing : clothes)
+            {
+                clothing->showInfo();
+            }
+            console->showTitlesOfProducts("SHOES");
+            for (Shoe* shoe : shoes)
+            {
+                shoe->showInfo();
+            }
+            console->showTitlesOfProducts("BALLS");
+            for (Ball* ball : balls)
+            {
+                ball->showInfo();
+            }
+            console->showTitlesOfProducts("ACCESSORIES");
+            for (Accessory* accessory : accessories)
+            {
+                accessory->showInfo();
+            }
+            break;
         }
-        cout << "*************** Balls ***************" << endl;
-        for (Ball* ball : balls)
+        default:
         {
-            ball->showInfo();
-            cout << "--------------------------------------------------------" << endl;
+            console->invalidSelection();
+            system("Pause");
+            break;
         }
-        cout << "*************** Accessories ***************" << endl;
-        for (Accessory* accessory : accessories)
-        {
-            accessory->showInfo();
-            cout << "--------------------------------------------------------" << endl;
         }
-        break;
-    }
-    }
+    } while (typeOption < 0 || typeOption > 5);
 }
 void Store::showMenu()
 {
