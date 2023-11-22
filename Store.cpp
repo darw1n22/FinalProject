@@ -35,8 +35,15 @@ Store::~Store()
     {
         delete product;
     }
-    delete owner;
-    delete console;
+    if (owner != nullptr)
+    {
+        delete owner;
+    }
+    if (console != nullptr)
+    {
+        delete console;
+    }
+    
 }
 void Store::addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age) {
     Person* person;

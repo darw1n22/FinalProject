@@ -17,12 +17,12 @@
 class Store
 {
 private:
-	Console* console;
+	Console* console = nullptr;
 	vector<Person*> people;
 	vector<Staff*> staffs;
 	vector<Client*> clients;
 	vector<Product*> products;
-	Owner* owner;
+	Owner* owner = nullptr;
 	vector <Clothing*> clothes;
 	vector <Shoe*> shoes;
 	vector <Ball*> balls;
