@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include <iostream>
 #include "Store.h"
-#include "StoreConsole.h"
+#include "console.h"
 
 using namespace std;
 int main()

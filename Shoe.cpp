@@ -15,3 +15,21 @@ bool Shoe::getHasVelcro()
 {
 	return hasVelcro;
 }
+
+void Shoe::showInfo()
+{
+	Product::showInfo();
+	cout << "available sizes: ";
+	for (int size : shoeSize)
+	{
+		cout << size << " ";
+	}
+	cout << endl;
+	if (hasVelcro)
+	{
+		cout << "The shoe has velcro" << endl;
+	}
+	else {
+		cout << "the shoe has laces" << endl;
+	}
+}

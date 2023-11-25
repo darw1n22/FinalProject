@@ -12,7 +12,6 @@ public:
 	vector <int> getClothingSize();
 	string getGarment();
 	void showInfo();
-
 };
 
 

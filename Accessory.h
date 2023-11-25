@@ -8,4 +8,5 @@ private:
 public:
 	Accessory(string bodyPart, long productCode, string brand, string description, string type, int stock, int shelf, float price);
 	string getBodyPart();
+	void showInfo();
 };

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Console.h"
-/*
+
 void Console::showMainMenu()
 {
     system("CLS");
@@ -53,4 +53,3 @@ void Console::showTitlesOfProducts(string productType)
 {
     cout << "******************** " << productType << "******************** " << endl;
 }
-*/

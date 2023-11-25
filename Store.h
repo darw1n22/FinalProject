@@ -12,14 +12,13 @@
 #include<vector>
 #include<Windows.h>
 #include<conio.h>
-#include "StoreConsole.h"
-#include "ProductConsole.h"
+#include "console.h"
+#include "console.h"
 #include "Console.h"
 
 class Store
 {
 private:
-	Console* console = nullptr;
 	vector<Person*> people;
 	vector<Staff*> staffs;
 	vector<Client*> clients;

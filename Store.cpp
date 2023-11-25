@@ -39,11 +39,6 @@ Store::~Store()
     {
         delete owner;
     }
-    if (console != nullptr)
-    {
-        delete console;
-    }
-    
 }
 void Store::addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age) {
     Person* person;
@@ -1265,15 +1260,15 @@ void Store::showFullInventory()
 {
     int typeOption;
     do {
-        console->showProductsMenu();
-        typeOption = console->selectOption();
+        Console::showProductsMenu();
+        typeOption = Console::selectOption();
         switch (typeOption)
         {
         case 0:
             break;
         case 1:
         {
-            console->showTitlesOfProducts("CLOTHING");
+            Console::showTitlesOfProducts("CLOTHING");
             for (Clothing* clothing : clothes)
             {
                 clothing->showInfo();
@@ -1282,7 +1277,7 @@ void Store::showFullInventory()
         }
         case 2:
         {
-            console->showTitlesOfProducts("SHOES");
+            Console::showTitlesOfProducts("SHOES");
             for (Shoe* shoe : shoes)
             {
                 shoe->showInfo();
@@ -1291,7 +1286,7 @@ void Store::showFullInventory()
         }
         case 3:
         {
-            console->showTitlesOfProducts("BALLS");
+            Console::showTitlesOfProducts("BALLS");
             for (Ball* ball : balls)
             {
                 ball->showInfo();
@@ -1300,7 +1295,7 @@ void Store::showFullInventory()
         }
         case 4:
         {
-            console->showTitlesOfProducts("ACCESSORIES");
+            Console::showTitlesOfProducts("ACCESSORIES");
             for (Accessory* accessory : accessories)
             {
                 accessory->showInfo();
@@ -1309,22 +1304,22 @@ void Store::showFullInventory()
         }
         case 5:
         {
-            console->showTitlesOfProducts("CLOTHING");
+            Console::showTitlesOfProducts("CLOTHING");
             for (Clothing* clothing : clothes)
             {
                 clothing->showInfo();
             }
-            console->showTitlesOfProducts("SHOES");
+            Console::showTitlesOfProducts("SHOES");
             for (Shoe* shoe : shoes)
             {
                 shoe->showInfo();
             }
-            console->showTitlesOfProducts("BALLS");
+            Console::showTitlesOfProducts("BALLS");
             for (Ball* ball : balls)
             {
                 ball->showInfo();
             }
-            console->showTitlesOfProducts("ACCESSORIES");
+            Console::showTitlesOfProducts("ACCESSORIES");
             for (Accessory* accessory : accessories)
             {
                 accessory->showInfo();
@@ -1333,7 +1328,7 @@ void Store::showFullInventory()
         }
         default:
         {
-            console->invalidSelection();
+            Console::invalidSelection();
             system("Pause");
             break;
         }
@@ -1344,11 +1339,11 @@ void Store::showMenu()
 {
     int choice;
     do {
-        console->showMainMenu();
-        choice = console->selectOption();
+        Console::showMainMenu();
+        choice = Console::selectOption();
         switch (choice) {
         case 0:
-            console->completedProgram();
+            Console::completedProgram();
             break;
         case 1:
             registerClient();
@@ -1399,7 +1394,7 @@ void Store::showMenu()
             system("Pause");
             break;
         default:
-            console->invalidSelection();
+            Console::invalidSelection();
             system("Pause");
         }
     } while (choice != 0);
