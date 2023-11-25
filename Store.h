@@ -12,6 +12,8 @@
 #include<vector>
 #include<Windows.h>
 #include<conio.h>
+#include "StoreConsole.h"
+#include "ProductConsole.h"
 #include "Console.h"
 
 class Store
