@@ -12,13 +12,16 @@
 #include<vector>
 #include<Windows.h>
 #include<conio.h>
-#include "console.h"
-#include "console.h"
 #include "Console.h"
+#include "LoadData.h"
+#include "TxtLocalLoader.h"
 
 class Store
 {
 private:
+	static int employeeCount;
+	static int clientCount;
+
 	vector<Person*> people;
 	vector<Staff*> staffs;
 	vector<Client*> clients;
@@ -28,6 +31,9 @@ private:
 	vector <Shoe*> shoes;
 	vector <Ball*> balls;
 	vector <Accessory*> accessories;
+
+	LoadData* load;
+
 	void showMenu();
 	void addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age);
 	void registerClient();
@@ -47,9 +53,16 @@ private:
 	void showProduct();
 	void searchAProduct();
 	void showFullInventory();
+
+	void adjustSalariesAndBudgets();
+	void adjustPromotions();
+	void showTotalClientsAndEmployeesToMakeChanges();
 public:
 	Store();
 	~Store();
+
+	static void displayCount();
+
 	void run();
 };
 

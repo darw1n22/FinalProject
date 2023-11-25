@@ -14,7 +14,6 @@ Person::Person(long id, string name, string lastname, int gender, string email, 
 }
 Person::~Person()
 {
-
 }
 long Person::getId()
 {

@@ -7,10 +7,10 @@ private:
 
 public:
 	long productCode;
-	string brand, description, type, color;
+	string brand, type, color;
 	int stock, shelf;
 	float price;
-	Product(long productCode, string brand, string description, string type, string color, int stock, int shelf, float price);
+	Product(long productCode, string brand, string type, string color, int stock, int shelf, float price);
 	~Product();
 	int getStock();
 	void setStock(int newStock);
@@ -18,8 +18,8 @@ public:
 	string getBrand();
 	void setBrand(string newBrand);
 	string getType();
-	string getDescription();
 	float getPrice();
+	void setPrice(float newPrice);
 	virtual void showInfo();
 };
 

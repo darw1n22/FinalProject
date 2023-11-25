@@ -2,7 +2,7 @@
 #include "Staff.h"
 #include "Client.h"
 #include "Product.h"
-#include<vector>
+#include <vector>
 
 class Sale
 {
@@ -12,9 +12,7 @@ private:
 	Staff* salesPerson;
 	vector<Product*> products;
 public:
-	Sale(long saleId, Client* client, Staff* salesPerson)
-		: saleId(saleId), client(client), salesPerson(salesPerson)
-	{}
+	Sale(long saleId, Client* client, Staff* salesPerson);
 	~Sale();
 	long getSaleId();
 	Client* getClient();

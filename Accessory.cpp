@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Accessory.h"
 
-Accessory::Accessory(string bodyPart, long productCode, string brand, string description, string type, int stock, int shelf, float price)
-	: Product(productCode, brand, description, type, color, stock, shelf, price)
+Accessory::Accessory(string bodyPart, long productCode, string brand, string type, int stock, int shelf, float price)
+	: Product(productCode, brand, type, color, stock, shelf, price)
 {
 	this->bodyPart = bodyPart;
 }

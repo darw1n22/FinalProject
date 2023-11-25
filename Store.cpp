@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "Store.h"
 
+int Store::employeeCount = 0;
+int Store::clientCount = 0;
+
 Store::Store()
 {
 }
@@ -40,6 +43,13 @@ Store::~Store()
         delete owner;
     }
 }
+
+void Store::displayCount()
+{
+    cout << "Registered Employees: " << employeeCount << endl;
+    cout << "Registered Clients: " << clientCount << endl;
+}
+
 void Store::addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age) {
     Person* person;
     cout << "Enter the person's ID: ";
@@ -654,7 +664,6 @@ void Store::makePurchase()
     cout << "Product: " << productToBuy->getProductCode() << endl;
     cout << "Product Brand: " << productToBuy->getBrand() << endl;
     cout << "Product Type: " << productToBuy->getType() << endl;
-    cout << "Product description: " << productToBuy->getDescription() << endl;
     cout << "Total Price of the items: " << productPrice << endl;
     cout << "Total Purchases of the client: " << TotalPurchases << endl;
 }
@@ -722,7 +731,7 @@ void Store::raiseSalaryDependingOnNumberSold()
 void Store::registerAProduct()
 {
     long productCode;
-    string brand, description, type, sport, garment;
+    string brand, type, sport, garment;
     int typeOption;
     int stock, shelf;
     int size = 0;
@@ -730,7 +739,7 @@ void Store::registerAProduct()
     float price;
     cout << "Ingrese el codigo de producto: "; cin >> productCode;
     cout << "Ingrese la marca: "; cin >> brand;
-    cout << "Ingrese una descripcion: "; cin >> description;
+    cout << "Ingrese el tipo de ropa: "; cin >> type;
     cout << "Ingrese el stock del producto: "; cin >> stock;
     cout << "1) Ropa : 2) Calzado : 3) Pelota : 4) Accesorio: "; cin >> typeOption;
     cout << "En que numero de estante guardara el producto: "; cin >> shelf;
@@ -750,10 +759,9 @@ void Store::registerAProduct()
             cin >> size;
             clothingSize.push_back(size);
         }
-        Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, description, type, stock, shelf, price);
+        Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, stock, shelf, price);
         clothes.push_back(newClothing);
         products.push_back(newClothing);
-
         break;
     }
     case 2:
@@ -771,7 +779,7 @@ void Store::registerAProduct()
             cin >> size;
             shoeSize.push_back(size);
         }
-        Shoe* newShoe = new Shoe(shoeSize, hasVelcro, productCode, brand, description, type, stock, shelf, price);
+        Shoe* newShoe = new Shoe(shoeSize, hasVelcro, productCode, brand, type, stock, shelf, price);
         shoes.push_back(newShoe);
         products.push_back(newShoe);
         break;
@@ -781,7 +789,7 @@ void Store::registerAProduct()
         type = "Ball";
         int weight;
         cout << "Ingrese el peso del balon: "; cin >> weight;
-        Ball* newBall = new Ball(weight, sport, productCode, brand, description, type, stock, shelf, price);
+        Ball* newBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
         balls.push_back(newBall);
         products.push_back(newBall);
         break;
@@ -791,7 +799,7 @@ void Store::registerAProduct()
         type = "Accessory";
         string bodyPart;
         cout << "Para que parte del cuerpo es el accesorio: "; cin >> bodyPart;
-        Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, description, type, stock, shelf, price);
+        Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
         accessories.push_back(newAccessory);
         products.push_back(newAccessory);
         break;
@@ -817,7 +825,6 @@ void Store::showProduct()
             {
                 cout << clothing->productCode << endl;
                 cout << clothing->brand << endl;
-                cout << clothing->description << endl;
                 cout << clothing->type << endl;
                 cout << clothing->stock << endl;
                 cout << clothing->shelf << endl;
@@ -839,7 +846,6 @@ void Store::showProduct()
             {
                 cout << shoe->productCode << endl;
                 cout << shoe->brand << endl;
-                cout << shoe->description << endl;
                 cout << shoe->type << endl;
                 cout << shoe->stock << endl;
                 cout << shoe->shelf << endl;
@@ -862,7 +868,6 @@ void Store::showProduct()
             {
                 cout << ball->productCode << endl;
                 cout << ball->brand << endl;
-                cout << ball->description << endl;
                 cout << ball->type << endl;
                 cout << ball->stock << endl;
                 cout << ball->shelf << endl;
@@ -880,7 +885,6 @@ void Store::showProduct()
             {
                 cout << Accessory->productCode << endl;
                 cout << Accessory->brand << endl;
-                cout << Accessory->description << endl;
                 cout << Accessory->type << endl;
                 cout << Accessory->stock << endl;
                 cout << Accessory->shelf << endl;
@@ -1335,6 +1339,172 @@ void Store::showFullInventory()
         }
     } while (typeOption < 0 || typeOption > 5);
 }
+void Store::adjustSalariesAndBudgets()
+{
+    int numberOfEmployeesToFire, staffId, numberOfEmployeesToHire;
+    int option;
+    if (Store::employeeCount >= Store::clientCount + 20) {
+        cout << "Do you want to fire anyone?(1. Yes or  2. No): ";
+        cin >> option;
+        if (option != 1 && option != 2) {
+            cout << "Invalid input for option. Please enter 1 for yes or 2 for no." << endl;
+            return;
+        }
+        if (option == 1) {
+            cout << "How many employees do you want to fire?: ";
+            cin >> numberOfEmployeesToFire;
+            if (numberOfEmployeesToFire > Store::employeeCount || numberOfEmployeesToFire <= 0) {
+                cout << "You can't fire more employees than the number of employees registered or number of employees to fire is less than 1." << endl;
+                return;
+            }
+            //now we have to fire the amount of employees chosen, lower the salaries of all other employees, and raise the budget of the owner.
+            for (int i = 0; i < numberOfEmployeesToFire; i++) {
+                cout << "Enter the id of the staff member to fire: ";
+                cin >> staffId;
+                if (staffId < 1) {
+                    cout << "Invalid input for ID. Please enter a valid number greater than 0." << endl;
+                    return;
+                }
+                Staff* staffToFire = nullptr;
+                for (Staff* staff : staffs)
+                {
+                    if (staff->getId() == staffId)
+                    {
+                        staffToFire = staff;
+                    }
+                }
+                if (staffToFire == nullptr) {
+                    cout << "Invalid id. please try again next time." << endl;
+                    return;
+                }
+                else {
+                    //we have to lower the salaries of all other employees by 10% and raise the budget of the owner by 10%.
+                    for (Staff* staff : staffs) {
+                        if (staff->getId() != staffId) {
+                            staff->setSalary(staff->getSalary() * 0.9);
+                        }
+                    }
+                    owner->setBudget(owner->getBudget() * 1.1);
+                    //now we have to remove the staff member from the staffs vector.
+                    for (int i = 0; i < staffs.size(); i++) {
+                        if (staffs[i]->getId() == staffId) {
+                            staffs.erase(staffs.begin() + i);
+                            employeeCount--;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            //we have to lower the salaries of all employees by 10% and raise the budget of the owner by 10%.
+            for (Staff* staff : staffs) {
+                staff->setSalary(staff->getSalary() * 0.9);
+            }
+            owner->setBudget(owner->getBudget() * 1.1);
+        }
+
+    }
+    else {
+        if (Store::clientCount >= Store::employeeCount + 20) {
+            cout << "Do you want to hire anyone?(1. Yes or  2. No): ";
+            cin >> option;
+            if (option != 1 && option != 2) {
+                cout << "Invalid input for option. Please enter 1 for yes or 2 for no." << endl;
+                return;
+            }
+            if (option == 1) {
+                cout << "How many employees do you want to hire?: ";
+                cin >> numberOfEmployeesToHire;
+                if (numberOfEmployeesToHire <= 0) {
+                    cout << "You can't hire less than 1 employee." << endl;
+                    return;
+                }
+                for (Staff* staff : staffs) {
+                    staff->setSalary(staff->getSalary() * 1.1);
+
+                }
+                owner->setBudget(owner->getBudget() * 0.9);
+                for (int i = 0; i < numberOfEmployeesToHire; i++) {
+                    registerStaff();
+
+                }
+            }
+            else {
+                for (Staff* staff : staffs) {
+                    staff->setSalary(staff->getSalary() * 1.1);
+
+                }
+                owner->setBudget(owner->getBudget() * 0.9);
+            }
+        }
+    }
+}
+void Store::adjustPromotions()
+{
+
+    if (Store::clientCount >= 100) {
+        for (Product* product : products) {
+            product->setPrice(product->getPrice() * 0.99);
+        }
+    }
+    else if (Store::clientCount >= 50 && Store::clientCount < 100) {
+        for (Product* product : products) {
+            product->setPrice(product->getPrice() * 0.98);
+        }
+    }
+    else if (Store::clientCount >= 20 && Store::clientCount < 50) {
+        for (Product* product : products) {
+            product->setPrice(product->getPrice() * 0.97);
+        }
+    }
+    else if (Store::clientCount >= 10 && Store::clientCount < 20) {
+        for (Product* product : products) {
+            product->setPrice(product->getPrice() * 0.95);
+        }
+    }
+    else if (Store::clientCount >= 0 && Store::clientCount < 10) {
+        for (Product* product : products) {
+            product->setPrice(product->getPrice() * 0.9);
+        }
+    }
+    else {
+        cout << "No promotions available at the moment." << endl;
+    }
+}
+void Store::showTotalClientsAndEmployeesToMakeChanges()
+{
+    int option;
+    do {
+        system("CLS");
+        cout << "---Menu---" << endl;
+        cout << "1. Display Registered Employees and Clients" << endl;
+        cout << "2. Adjust Salaries and Budgets" << endl;
+        cout << "3. Adjust Promotions" << endl;
+        cout << "0. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> option;
+        switch (option) {
+        case 1:
+            displayCount();
+            system("Pause");
+            break;
+        case 2:
+            adjustSalariesAndBudgets();
+            system("Pause");
+            break;
+        case 3:
+            adjustPromotions();
+            system("Pause");
+            break;
+        case 0:
+            cout << "Returning to the main menu!" << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please enter a valid choice next time!" << endl;
+            system("Pause");
+        }
+    } while (option != 0);
+}
 void Store::showMenu()
 {
     int choice;
@@ -1401,5 +1571,8 @@ void Store::showMenu()
 }
 void Store::run()
 {
+    LoadData* ptr = new TxtLocalLoader();
+    clients = ptr->vecClient();
+    staffs = ptr->vecStaff();
     showMenu();
 }

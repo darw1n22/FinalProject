@@ -21,7 +21,6 @@ public:
 	int getBudget();
 	void setBudget(int newBudget);
 	void displayInfo() override {
-
 		Person::displayInfo();
 		cout << "Budget: $" << budget << endl;
 	}

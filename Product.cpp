@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "Product.h"
 
-Product::Product(long productCode, string brand, string description, string type, string color, int stock, int shelf, float price)
+Product::Product(long productCode, string brand, string type, string color, int stock, int shelf, float price)
 {
 	this->productCode = productCode;
 	this->brand = brand;
-	this->description = description;
 	this->type = type;
 	this->stock = stock;
 	this->shelf = shelf;
@@ -45,20 +44,20 @@ string Product::getType()
 {
 	return type;
 }
-string Product::getDescription()
-{
-	return description;
-}
 float Product::getPrice()
 {
 	return price;
+}
+
+void Product::setPrice(float newPrice)
+{
+	price = newPrice;
 }
 
 void Product::showInfo()
 {
 	cout << "Product code: " << productCode << endl;
 	cout << "Brand: " << brand << endl;
-	cout << "Description: " << description << endl;
 	cout << "Color: " << color << endl;
 	cout << "Type: " << type << endl;
 	cout << "Stock: " << stock << " unities" << endl;

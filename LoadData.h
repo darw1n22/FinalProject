@@ -12,8 +12,8 @@ class LoadData
 public:
 	~LoadData();
 	LoadData();
-	virtual vector<Client*> vecClient();
-	virtual vector<Staff*> vecStaff();
-	virtual vector<Owner*> vecOwner();
+	virtual vector<Client*> vecClient() = 0;
+	virtual vector<Staff*> vecStaff() = 0;
+	virtual vector<Owner*> vecOwner() = 0;
 
 };

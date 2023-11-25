@@ -16,5 +16,4 @@ public:
 	vector<Client*> vecClient();
 	vector<Staff*> vecStaff();
 	vector<Owner*> vecOwner();
-
 };

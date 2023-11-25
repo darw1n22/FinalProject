@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "Ball.h"
 
-Ball::Ball(int weight, string sport, long productCode, string brand, string description, string type, int stock, int shelf, float price)
-	: Product(productCode, brand, color, description, type, stock, shelf, price)
+Ball::Ball(int weight, string sport, long productCode, string brand, string type, int stock, int shelf, float price)
+	: Product(productCode, brand, color, type, stock, shelf, price)
 {
 	this->weight = weight;
 	this->sport = sport;

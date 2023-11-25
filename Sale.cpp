@@ -1,6 +1,13 @@
 #include "pch.h"
 #include "Sale.h"
 
+Sale::Sale(long saleId, Client* client, Staff* salesPerson)
+{
+	this->saleId = saleId;
+	this->client = client;
+	this->salesPerson = salesPerson;
+}
+
 Sale::~Sale()
 {
 }
@@ -28,5 +35,4 @@ vector<Product*> Sale::getProducts()
 void Sale::addProduct(Product* product)
 {
 	products.push_back(product);
-
 }
