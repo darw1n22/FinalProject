@@ -1,34 +1,22 @@
 #include "pch.h"
 #include "Shoe.h"
 
-Shoe::Shoe(vector <int> shoeSize, bool hasVelcro, long productCode, string brand, string type, int stock, int shelf, float price)
+Shoe::Shoe(vector <int> shoeSize, long productCode, string brand, string type, int stock, int shelf, float price)
 	: Product(productCode, brand, type, color, stock, shelf, price)
 {
 	this->shoeSize = shoeSize;
-	this->hasVelcro = hasVelcro;
 }
 vector<int> Shoe::getShoeSize()
 {
 	return shoeSize;
 }
-bool Shoe::getHasVelcro()
-{
-	return hasVelcro;
-}
 void Shoe::showInfo()
 {
 	Product::showInfo();
-	cout << "available sizes: ";
+	Console::showSizes();
 	for (int size : shoeSize)
 	{
-		cout << size << " ";
+		Console::printSizes(size);
 	}
-	cout << endl;
-	if (hasVelcro)
-	{
-		cout << "The shoe has velcro" << endl;
-	}
-	else {
-		cout << "the shoe has laces" << endl;
-	}
+	Console::printEndline();
 }

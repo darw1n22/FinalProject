@@ -19,6 +19,5 @@ string Ball::getSport()
 void Ball::showInfo()
 {
 	Product::showInfo();
-	cout << "Weight: " << weight << endl;
-	cout << "Sport: " << sport << endl;
+	Console::showBall(weight, sport);
 }

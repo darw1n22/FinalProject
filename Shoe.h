@@ -6,12 +6,10 @@ class Shoe : public Product
 {
 private:
 	vector <int> shoeSize;
-	bool hasVelcro;
 public:
-	Shoe(vector <int> shoeSize, bool hasVelcro, long productCode, string brand, string type, int stock, int shelf, float price);
+	Shoe(vector <int> shoeSize, long productCode, string brand, string type, int stock, int shelf, float price);
 
 	vector <int> getShoeSize();
-	bool getHasVelcro();
 	void showInfo();
 };
 

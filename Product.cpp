@@ -56,11 +56,5 @@ void Product::setPrice(float newPrice)
 
 void Product::showInfo()
 {
-	cout << "Product code: " << productCode << endl;
-	cout << "Brand: " << brand << endl;
-	cout << "Color: " << color << endl;
-	cout << "Type: " << type << endl;
-	cout << "Stock: " << stock << " unities" << endl;
-	cout << "It is on shelf number " << shelf << endl;
-	cout << "Price: " << price << endl;
+	Console::showProductInformation(productCode, brand, type, color, stock, shelf, price);
 }

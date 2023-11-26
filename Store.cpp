@@ -732,31 +732,20 @@ void Store::registerAProduct()
 {
     long productCode;
     string brand, type, sport, garment;
-    int typeOption;
-    int stock, shelf;
-    int size = 0;
-    int n;
+    int typeOption, stock, shelf, size;
     float price;
-    cout << "Ingrese el codigo de producto: "; cin >> productCode;
-    cout << "Ingrese la marca: "; cin >> brand;
-    cout << "Ingrese el tipo de ropa: "; cin >> type;
-    cout << "Ingrese el stock del producto: "; cin >> stock;
-    cout << "1) Ropa : 2) Calzado : 3) Pelota : 4) Accesorio: "; cin >> typeOption;
-    cout << "En que numero de estante guardara el producto: "; cin >> shelf;
-    cout << "Ingrese el precio: "; cin >> price;
+    Console::readProducts(productCode, brand, type, sport, garment, typeOption, stock, shelf, price);
     switch (typeOption)
     {
     case 1:
     {
         type = "Clothing";
-        cout << "Ingrese el monto de tallas que hay: ";
-        cin >> n;
         vector <int> clothingSize;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < stock; i++)
         {
-
-            cout << "Talla: ";
-            cin >> size;
+            size = 0;
+            Console::enterTheSize();
+            size = Console::readFromKeyboard<int>();
             clothingSize.push_back(size);
         }
         Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, stock, shelf, price);
@@ -767,19 +756,15 @@ void Store::registerAProduct()
     case 2:
     {
         type = "Shoe";
-        cout << "Ingrese el monto de tallas que hay: ";
-        cin >> n;
         vector <int> shoeSize;
-        bool hasVelcro;
-        cout << "El calzado tiene velcro (1.Si : 0.No): "; cin >> hasVelcro;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < stock; i++)
         {
-            int size = 0;
-            cout << "Talla: ";
-            cin >> size;
+            size = 0 ;
+            Console::enterTheSize();
+            size = Console::readFromKeyboard<int>();
             shoeSize.push_back(size);
         }
-        Shoe* newShoe = new Shoe(shoeSize, hasVelcro, productCode, brand, type, stock, shelf, price);
+        Shoe* newShoe = new Shoe(shoeSize, productCode, brand, type, stock, shelf, price);
         shoes.push_back(newShoe);
         products.push_back(newShoe);
         break;
@@ -788,7 +773,8 @@ void Store::registerAProduct()
     {
         type = "Ball";
         int weight;
-        cout << "Ingrese el peso del balon: "; cin >> weight;
+        Console::enterTheWeight();
+        weight = Console::readFromKeyboard<int>();
         Ball* newBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
         balls.push_back(newBall);
         products.push_back(newBall);
@@ -798,7 +784,8 @@ void Store::registerAProduct()
     {
         type = "Accessory";
         string bodyPart;
-        cout << "Para que parte del cuerpo es el accesorio: "; cin >> bodyPart;
+        Console::enterBodyPart();
+        bodyPart = Console::readFromKeyboard<string>();
         Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
         accessories.push_back(newAccessory);
         products.push_back(newAccessory);
@@ -813,8 +800,10 @@ void Store::showProduct()
 {
     long code;
     int typeOption;
-    cout << "1) Ropa : 2) Calzado : 3) Pelota : 4) Accesorio"; cin >> typeOption;
-    cout << "Ingrese el codigo de producto: "; cin >> code;
+    Console::selectProduct();
+    typeOption = Console::readFromKeyboard<int>();
+    Console::enterProductCode();
+    code = Console::readFromKeyboard<long>();
     switch (typeOption)
     {
     case 1:
@@ -823,17 +812,7 @@ void Store::showProduct()
         {
             if (clothing->productCode == code)
             {
-                cout << clothing->productCode << endl;
-                cout << clothing->brand << endl;
-                cout << clothing->type << endl;
-                cout << clothing->stock << endl;
-                cout << clothing->shelf << endl;
-                cout << clothing->price << endl;
-                vector <int> clothingSize = clothing->getClothingSize();
-                for (int sizes : clothingSize)
-                {
-                    cout << sizes << " ";
-                }
+                clothing->showInfo();
             }
         }
         break;
@@ -844,18 +823,7 @@ void Store::showProduct()
         {
             if (shoe->productCode == code)
             {
-                cout << shoe->productCode << endl;
-                cout << shoe->brand << endl;
-                cout << shoe->type << endl;
-                cout << shoe->stock << endl;
-                cout << shoe->shelf << endl;
-                cout << shoe->price << endl;
-                cout << shoe->getHasVelcro() << endl;
-                vector <int> shoeSize = shoe->getShoeSize();
-                for (int sizes : shoeSize)
-                {
-                    cout << sizes << " ";
-                }
+                shoe->showInfo();
             }
         }
         break;
@@ -866,30 +834,18 @@ void Store::showProduct()
         {
             if (ball->productCode == code)
             {
-                cout << ball->productCode << endl;
-                cout << ball->brand << endl;
-                cout << ball->type << endl;
-                cout << ball->stock << endl;
-                cout << ball->shelf << endl;
-                cout << ball->price << endl;
-                cout << ball->getWeight() << endl;
+                ball->showInfo();
             }
         }
         break;
     }
     case 4:
     {
-        for (Accessory* Accessory : accessories)
+        for (Accessory* accessory : accessories)
         {
-            if (Accessory->productCode == code)
+            if (accessory->productCode == code)
             {
-                cout << Accessory->productCode << endl;
-                cout << Accessory->brand << endl;
-                cout << Accessory->type << endl;
-                cout << Accessory->stock << endl;
-                cout << Accessory->shelf << endl;
-                cout << Accessory->price << endl;
-                cout << Accessory->getBodyPart() << endl;
+                accessory->showInfo();
             }
         }
         break;
@@ -897,29 +853,26 @@ void Store::showProduct()
 
     }
 }
+
 void Store::searchAProduct()
 {
     int typeOption;
-    cout << "What type of product do you want search" << endl;
-    cout << "1) Clothing | 2) Shoes | 3) Balls | 4) Accessory" << endl; cin >> typeOption;
+    Console::searchProducts();
+    typeOption = Console::readFromKeyboard<int>();
     switch (typeOption)
     {
     case 1:
     {
-        cout << "1. Search by code" << endl;
-        cout << "2. Search by size" << endl;
-        cout << "3. Search by brand" << endl;
-        cout << "4. Search by price" << endl;
-        cout << "5. Search by color" << endl;
-        cout << "6. Search by type of garment" << endl;
         int option;
-        cin >> option;
+        Console::searchClothing();
+        option = Console::readFromKeyboard<int>();
         switch (option)
         {
         case 1:
         {
             int code;
-            cout << "Enter the code: "; cin >> code;
+            Console::enterProductCode();
+            code = Console::readFromKeyboard<int>();
             for (Clothing* clothing : clothes)
             {
                 if (clothing->productCode == code)
@@ -929,10 +882,56 @@ void Store::searchAProduct()
             }
             break;
         }
+        
         case 2:
         {
+            string brand;
+            brand = Console::readFromKeyboard<string>();
+            for (Clothing* clothing : clothes)
+            {
+                if (clothing->brand == brand)
+                {
+                    clothing->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 3:
+        {
+            float price;
+            Console::enterThePrice();
+            price = Console::readFromKeyboard<float>();
+            for (Clothing* clothing : clothes)
+            {
+                if (clothing->price <= price)
+                {
+                    clothing->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 4:
+        {
+            string color;
+            Console::enterTheColor();
+            color = Console::readFromKeyboard<string>();
+            for (Clothing* clothing : clothes)
+            {
+                if (clothing->color == color)
+                {
+                    clothing->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 5:
+        {
             int size;
-            cout << "Enter the size: "; cin >> size;
+            Console::enterTheSize();
+            size = Console::readFromKeyboard<int>();
             for (Clothing* clothing : clothes)
             {
                 vector <int> sizes = clothing->getClothingSize();
@@ -941,50 +940,8 @@ void Store::searchAProduct()
                     if (clotheSize == size)
                     {
                         clothing->showInfo();
-                        cout << "--------------------------------------------------------" << endl;
+                        Console::printSeparator();
                     }
-                }
-            }
-            break;
-        }
-        case 3:
-        {
-            string brand;
-            cout << "Enter the brand: "; cin >> brand;
-            for (Clothing* clothing : clothes)
-            {
-                if (clothing->brand == brand)
-                {
-                    clothing->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
-                }
-            }
-            break;
-        }
-        case 4:
-        {
-            float price;
-            cout << "Enter the price: "; cin >> price;
-            for (Clothing* clothing : clothes)
-            {
-                if (clothing->price <= price)
-                {
-                    clothing->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
-                }
-            }
-            break;
-        }
-        case 5:
-        {
-            string color;
-            cout << "Enter the color: "; cin >> color;
-            for (Clothing* clothing : clothes)
-            {
-                if (clothing->color == color)
-                {
-                    clothing->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
                 }
             }
             break;
@@ -992,13 +949,14 @@ void Store::searchAProduct()
         case 6:
         {
             string garment;
-            cout << "Enter the type of garment: "; cin >> garment;
+            Console::enterTheGarment();
+            garment = Console::readFromKeyboard<string>();
             for (Clothing* clothing : clothes)
             {
                 if (clothing->getGarment() == garment)
                 {
                     clothing->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
@@ -1008,19 +966,16 @@ void Store::searchAProduct()
     }
     case 2:
     {
-        cout << "1. Search by code" << endl;
-        cout << "2. Search by size" << endl;
-        cout << "3. Search by brand" << endl;
-        cout << "4. Search by price" << endl;
-        cout << "5. Search by color" << endl;
         int option;
-        cin >> option;
+        Console::searchProductsMenu();
+        option = Console::readFromKeyboard<int>();
         switch (option)
         {
         case 1:
         {
-            int code;
-            cout << "Enter the code: "; cin >> code;
+            long code;
+            Console::enterProductCode();
+            code = Console::readFromKeyboard<long>();
             for (Shoe* shoe : shoes)
             {
                 if (shoe->productCode == code)
@@ -1032,8 +987,54 @@ void Store::searchAProduct()
         }
         case 2:
         {
+            string brand;
+            Console::enterTheBrand();
+            brand = Console::readFromKeyboard<string>();
+            for (Shoe* shoe : shoes)
+            {
+                if (shoe->brand == brand)
+                {
+                    shoe->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 3:
+        {
+            float price;
+            Console::enterThePrice();
+            price = Console::readFromKeyboard<float>();
+            for (Shoe* shoe : shoes)
+            {
+                if (shoe->price <= price)
+                {
+                    shoe->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 4:
+        {
+            string color;
+            Console::enterTheColor();
+            color = Console::readFromKeyboard<string>();
+            for (Shoe* shoe : shoes)
+            {
+                if (shoe->color == color)
+                {
+                    shoe->showInfo();
+                    Console::printSeparator();
+                }
+            }
+            break;
+        }
+        case 5:
+        {
             int size;
-            cout << "Enter the size: "; cin >> size;
+            Console::enterTheSize();
+            size = Console::readFromKeyboard<int>();
             for (Shoe* shoe : shoes)
             {
                 vector <int> sizes = shoe->getShoeSize();
@@ -1042,50 +1043,8 @@ void Store::searchAProduct()
                     if (shoeSize == size)
                     {
                         shoe->showInfo();
-                        cout << "--------------------------------------------------------" << endl;
+                        Console::printSeparator();
                     }
-                }
-            }
-            break;
-        }
-        case 3:
-        {
-            string brand;
-            cout << "Enter the brand: "; cin >> brand;
-            for (Shoe* shoe : shoes)
-            {
-                if (shoe->brand == brand)
-                {
-                    shoe->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
-                }
-            }
-            break;
-        }
-        case 4:
-        {
-            float price;
-            cout << "Enter the price: "; cin >> price;
-            for (Shoe* shoe : shoes)
-            {
-                if (shoe->price <= price)
-                {
-                    shoe->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
-                }
-            }
-            break;
-        }
-        case 5:
-        {
-            string color;
-            cout << "Enter the color: "; cin >> color;
-            for (Shoe* shoe : shoes)
-            {
-                if (shoe->color == color)
-                {
-                    shoe->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
                 }
             }
             break;
@@ -1095,79 +1054,82 @@ void Store::searchAProduct()
     }
     case 3:
     {
-        cout << "1. Search by code" << endl;
-        cout << "2. Search by sport" << endl;
-        cout << "3. Search by brand" << endl;
-        cout << "4. Search by price" << endl;
-        cout << "5. Search by color" << endl;
         int option;
-        cin >> option;
+        Console::searchBall();
+        option = Console::readFromKeyboard<int>();
         switch (option)
         {
         case 1:
         {
-            int code;
-            cout << "Enter the code: "; cin >> code;
+            long code;
+            Console::enterProductCode();
+            code = Console::readFromKeyboard<long>();
             for (Ball* ball : balls)
             {
                 if (ball->productCode == code)
                 {
                     ball->showInfo();
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 2:
         {
-            string sport;
-            cout << "For which sport: "; cin >> sport;
+            string brand;
+            Console::enterTheBrand();
+            brand = Console::readFromKeyboard<string>();
             for (Ball* ball : balls)
             {
-                if (ball->getSport() == sport)
+                if (ball->brand == brand)
                 {
                     ball->showInfo();
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 3:
         {
-            string brand;
-            cout << "Enter the brand: "; cin >> brand;
+            float price;
+            Console::enterThePrice();
+            price = Console::readFromKeyboard<float>();
             for (Ball* ball : balls)
             {
-                if (ball->brand == brand)
+                if (ball->price <= price)
                 {
                     ball->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 4:
         {
-            float price;
-            cout << "Enter the price: "; cin >> price;
+            string color;
+            Console::enterTheColor();
+            color = Console::readFromKeyboard<string>();
             for (Ball* ball : balls)
             {
-                if (ball->price <= price)
+                if (ball->color == color)
                 {
                     ball->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 5:
         {
-            string color;
-            cout << "Enter the color: "; cin >> color;
+            string sport;
+            Console::enterTheSport();
+            sport = Console::readFromKeyboard<string>();
             for (Ball* ball : balls)
             {
-                if (ball->color == color)
+                if (ball->getSport() == sport)
                 {
                     ball->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
@@ -1177,80 +1139,83 @@ void Store::searchAProduct()
     }
     case 4:
     {
-        cout << "1. Search by code" << endl;
-        cout << "2. Search by body part" << endl;
-        cout << "3. Search by brand" << endl;
-        cout << "4. Search by price" << endl;
-        cout << "5. Search by color" << endl;
         int option;
-        cin >> option;
+        Console::searchAccessories();
+        option = Console::readFromKeyboard<int>();
         switch (option)
         {
         case 1:
         {
-            int code;
-            cout << "Enter the code: "; cin >> code;
+            long code;
+            Console::enterProductCode();
+            code = Console::readFromKeyboard<long>();
             for (Accessory* accessory : accessories)
             {
                 if (accessory->productCode == code)
                 {
                     accessory->showInfo();
+                    Console::printSeparator();
                 }
             }
             break;
         }
+        
         case 2:
         {
-            string bodyPart;
-            cout << "Enter the body part: "; cin >> bodyPart;
+            string brand;
+            Console::enterTheBrand();
+            brand = Console::readFromKeyboard<string>();
             for (Accessory* accessory : accessories)
             {
-                if (accessory->getBodyPart() == bodyPart)
+                if (accessory->brand == brand)
                 {
                     accessory->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 3:
         {
-            string brand;
-            cout << "Enter the brand: "; cin >> brand;
+            float price;
+            Console::enterThePrice();
+            price = Console::readFromKeyboard<float>();
             for (Accessory* accessory : accessories)
             {
-                if (accessory->brand == brand)
+                if (accessory->price <= price)
                 {
                     accessory->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 4:
         {
-            float price;
-            cout << "Enter the price: "; cin >> price;
+            string color;
+            Console::enterTheColor();
+            color = Console::readFromKeyboard<string>();
             for (Accessory* accessory : accessories)
             {
-                if (accessory->price <= price)
+                if (accessory->color == color)
                 {
                     accessory->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
         }
         case 5:
         {
-            string color;
-            cout << "Enter the color: "; cin >> color;
+            string bodyPart;
+            Console::enterBodyPart();
+            bodyPart = Console::readFromKeyboard<string>();
             for (Accessory* accessory : accessories)
             {
-                if (accessory->color == color)
+                if (accessory->getBodyPart() == bodyPart)
                 {
                     accessory->showInfo();
-                    cout << "--------------------------------------------------------" << endl;
+                    Console::printSeparator();
                 }
             }
             break;
@@ -1265,7 +1230,7 @@ void Store::showFullInventory()
     int typeOption;
     do {
         Console::showProductsMenu();
-        typeOption = Console::selectOption();
+        typeOption = Console::readFromKeyboard<int>();
         switch (typeOption)
         {
         case 0:
@@ -1332,7 +1297,7 @@ void Store::showFullInventory()
         }
         default:
         {
-            Console::invalidSelection();
+            Console::invalid();
             system("Pause");
             break;
         }
@@ -1341,28 +1306,27 @@ void Store::showFullInventory()
 }
 void Store::adjustSalariesAndBudgets()
 {
-    int numberOfEmployeesToFire, staffId, numberOfEmployeesToHire;
-    int option;
+    int numberOfEmployeesToFire, staffId, numberOfEmployeesToHire, option;
     if (Store::employeeCount >= Store::clientCount + 20) {
-        cout << "Do you want to fire anyone?(1. Yes or  2. No): ";
-        cin >> option;
+        Console::fireEmployee();
+        option = Console::readFromKeyboard<int>();
         if (option != 1 && option != 2) {
-            cout << "Invalid input for option. Please enter 1 for yes or 2 for no." << endl;
+            Console::invalid();
             return;
         }
         if (option == 1) {
-            cout << "How many employees do you want to fire?: ";
-            cin >> numberOfEmployeesToFire;
+            Console::numberOfFire();
+            numberOfEmployeesToFire = Console::readFromKeyboard<int>();
             if (numberOfEmployeesToFire > Store::employeeCount || numberOfEmployeesToFire <= 0) {
-                cout << "You can't fire more employees than the number of employees registered or number of employees to fire is less than 1." << endl;
+                Console::invalid();
                 return;
             }
             //now we have to fire the amount of employees chosen, lower the salaries of all other employees, and raise the budget of the owner.
             for (int i = 0; i < numberOfEmployeesToFire; i++) {
-                cout << "Enter the id of the staff member to fire: ";
-                cin >> staffId;
+                Console::enterPersonId();
+                staffId = Console::readFromKeyboard<int>();
                 if (staffId < 1) {
-                    cout << "Invalid input for ID. Please enter a valid number greater than 0." << endl;
+                    Console::invalid();
                     return;
                 }
                 Staff* staffToFire = nullptr;
@@ -1374,7 +1338,7 @@ void Store::adjustSalariesAndBudgets()
                     }
                 }
                 if (staffToFire == nullptr) {
-                    cout << "Invalid id. please try again next time." << endl;
+                    Console::invalid();
                     return;
                 }
                 else {
@@ -1406,17 +1370,17 @@ void Store::adjustSalariesAndBudgets()
     }
     else {
         if (Store::clientCount >= Store::employeeCount + 20) {
-            cout << "Do you want to hire anyone?(1. Yes or  2. No): ";
-            cin >> option;
+            Console::hireEmployee();
+            option = Console::readFromKeyboard<int>();
             if (option != 1 && option != 2) {
-                cout << "Invalid input for option. Please enter 1 for yes or 2 for no." << endl;
+                Console::invalid();
                 return;
             }
             if (option == 1) {
-                cout << "How many employees do you want to hire?: ";
-                cin >> numberOfEmployeesToHire;
+                Console::numberOfHire();
+                numberOfEmployeesToHire = Console::readFromKeyboard<int>();
                 if (numberOfEmployeesToHire <= 0) {
-                    cout << "You can't hire less than 1 employee." << endl;
+                    Console::invalid();
                     return;
                 }
                 for (Staff* staff : staffs) {
@@ -1441,7 +1405,6 @@ void Store::adjustSalariesAndBudgets()
 }
 void Store::adjustPromotions()
 {
-
     if (Store::clientCount >= 100) {
         for (Product* product : products) {
             product->setPrice(product->getPrice() * 0.99);
@@ -1468,21 +1431,15 @@ void Store::adjustPromotions()
         }
     }
     else {
-        cout << "No promotions available at the moment." << endl;
+        Console::inactivePromotion();
     }
 }
 void Store::showTotalClientsAndEmployeesToMakeChanges()
 {
     int option;
     do {
-        system("CLS");
-        cout << "---Menu---" << endl;
-        cout << "1. Display Registered Employees and Clients" << endl;
-        cout << "2. Adjust Salaries and Budgets" << endl;
-        cout << "3. Adjust Promotions" << endl;
-        cout << "0. Exit" << endl;
-        cout << "Enter your choice: ";
-        cin >> option;
+        Console::showClientsAndEmployeesMenu();
+        option = Console::readFromKeyboard<int>();
         switch (option) {
         case 1:
             displayCount();
@@ -1497,10 +1454,10 @@ void Store::showTotalClientsAndEmployeesToMakeChanges()
             system("Pause");
             break;
         case 0:
-            cout << "Returning to the main menu!" << endl;
+            Console::returnToPreviousMenu();
             break;
         default:
-            cout << "Invalid choice. Please enter a valid choice next time!" << endl;
+            Console::invalid();
             system("Pause");
         }
     } while (option != 0);
@@ -1510,7 +1467,7 @@ void Store::showMenu()
     int choice;
     do {
         Console::showMainMenu();
-        choice = Console::selectOption();
+        choice = Console::readFromKeyboard<int>();
         switch (choice) {
         case 0:
             Console::completedProgram();
@@ -1564,7 +1521,7 @@ void Store::showMenu()
             system("Pause");
             break;
         default:
-            Console::invalidSelection();
+            Console::invalid();
             system("Pause");
         }
     } while (choice != 0);

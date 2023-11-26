@@ -15,5 +15,5 @@ string Accessory::getBodyPart()
 void Accessory::showInfo()
 {
 	Product::showInfo();
-	cout << "The accessory is for " << bodyPart << endl;
+	Console::showAccessory(bodyPart);
 }

@@ -21,10 +21,10 @@ string Clothing::getGarment()
 void Clothing::showInfo()
 {
 	Product::showInfo();
-	cout << "available sizes: ";
+	Console::showSizes();
 	for (int size : clothingSize)
 	{
-		cout << size << " ";
+		Console::printSizes(size);
 	}
-	cout << endl;
+	Console::printEndline();
 }
