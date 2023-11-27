@@ -213,14 +213,12 @@ void Console::enterTheWeight()
     cout << "Enter the weight of ball: ";
 }
 
-void Console::readProducts(long& productCode, string& brand, string& type, string& sport, string& garment,int &typeOption, int& stock, int& shelf, float& price)
+void Console::readProducts(long& productCode, string& brand, string& sport,int &typeOption, int& stock, int& shelf, float& price)
 {
     Console::enterProductCode();
     productCode = Console::readFromKeyboard<long>();
     Console::enterTheBrand();
     brand = Console::readFromKeyboard<string>();
-    Console::enterTheGarment();
-    garment = Console::readFromKeyboard<string>();
     cout << "Enter the stock: ";
     stock = Console::readFromKeyboard<int>();
     Console::selectProduct();

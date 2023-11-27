@@ -734,13 +734,15 @@ void Store::registerAProduct()
     string brand, type, sport, garment;
     int typeOption, stock, shelf, size;
     float price;
-    Console::readProducts(productCode, brand, type, sport, garment, typeOption, stock, shelf, price);
+    Console::readProducts(productCode, brand, sport, typeOption, stock, shelf, price);
     switch (typeOption)
     {
     case 1:
     {
         type = "Clothing";
         vector <int> clothingSize;
+        Console::enterTheGarment();
+        garment = Console::readFromKeyboard<string>();
         for (int i = 0; i < stock; i++)
         {
             size = 0;
@@ -792,9 +794,11 @@ void Store::registerAProduct()
         break;
     }
     default:
+    {
+        Console::invalid();
         break;
     }
-
+    }
 }
 void Store::showProduct()
 {

@@ -45,7 +45,7 @@ public:
 	static void enterTheSport();
 	static void enterBodyPart();
 	static void enterTheWeight();
-	static void readProducts(long &productCode, string &brand, string &type, string &sport, string &garment, int& typeOption, int &stock,int &shelf,float &price);
+	static void readProducts(long &productCode, string &brand, string &sport, int& typeOption, int &stock,int &shelf,float &price);
 
 	////////////////////////// PERSON //////////////////////////
 	static void showClientsAndEmployeesMenu();
