@@ -111,6 +111,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Product.h" />
+    <ClInclude Include="QuickSort.h" />
     <ClInclude Include="Sale.h" />
     <ClInclude Include="Shoe.h" />
     <ClInclude Include="Staff.h" />
