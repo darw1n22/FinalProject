@@ -33,7 +33,7 @@
     <ClInclude Include="Clothing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoadData.h">
+    <ClInclude Include="DataLoading.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Owner.h">
@@ -89,7 +89,7 @@
     <ClCompile Include="Clothing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LoadData.cpp">
+    <ClCompile Include="DataLoading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Owner.cpp">

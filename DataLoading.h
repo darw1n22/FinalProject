@@ -9,11 +9,11 @@
 
 using namespace std;
 
-class LoadData
+class DataLoading
 {
 public:
-	~LoadData();
-	LoadData();
+	~DataLoading();
+	DataLoading();
 	virtual vector<Client*> vecClient() = 0;
 	virtual vector<Staff*> vecStaff() = 0;
 	virtual vector<Owner*> vecOwner() = 0;

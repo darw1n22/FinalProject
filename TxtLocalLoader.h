@@ -4,12 +4,12 @@
 #include "Owner.h"
 #include "Clothing.h"
 #include "Shoe.h"
-#include "LoadData.h"
+#include "DataLoading.h"
 #include <vector>
 #include <iostream>	
 #include <fstream>
 using namespace std;
-class TxtLocalLoader : public LoadData
+class TxtLocalLoader : public DataLoading
 {
 public:
 	~TxtLocalLoader();
