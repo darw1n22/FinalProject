@@ -68,3 +68,8 @@ bool Product::operator>=(Product& p)
 {
 	return this->productCode >= p.productCode;
 }
+
+float Product::getTotalCost()
+{
+	return price * stock;
+}

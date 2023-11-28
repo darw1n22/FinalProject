@@ -26,5 +26,6 @@ public:
 	virtual void showInfo();
 	bool operator<=(Product& p);
 	bool operator>=(Product& p);
+	float getTotalCost();
 };
 

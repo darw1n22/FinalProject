@@ -32,6 +32,7 @@ public:
 	static void searchBall();
 	static void searchAccessories();
 	static void enterProductCode();
+	static int amountOfProducts();
 	static void showProductInformation(long productCode, string brand, string type, string color, int stock, int shelf, float price);
 	static void showAccessory(string bodyPart);
 	static void showBall(int weight, string sport);

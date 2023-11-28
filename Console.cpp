@@ -140,6 +140,16 @@ void Console::enterProductCode()
     cout << "Enter the code: ";
 }
 
+int Console::amountOfProducts()
+{
+    int amountOfProducts;
+    cout << "--REGISTERING PRODUCTS--" << endl;
+    cout << "Amount of new types of products: (1 - 4)" << endl;
+    cout << " Clothing |||  Shoes |||  Ball |||  Accesory" << endl;
+    cin >> amountOfProducts;
+    return amountOfProducts;
+}
+
 void Console::showProductInformation(long productCode, string brand, string type, string color, int stock, int shelf, float price)
 {
     cout << "Product code: " << productCode << endl;

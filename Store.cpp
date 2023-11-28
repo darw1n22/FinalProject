@@ -734,71 +734,96 @@ void Store::registerAProduct()
     string brand, type, sport, garment;
     int typeOption, stock, shelf, size;
     float price;
-    Console::readProducts(productCode, brand, sport, typeOption, stock, shelf, price);
-    switch (typeOption)
-    {
-    case 1:
-    {
-        type = "Clothing";
-        vector <int> clothingSize;
-        Console::enterTheGarment();
-        garment = Console::readFromKeyboard<string>();
-        for (int i = 0; i < stock; i++)
+    int accumulatingCost = 0;
+    int amountOfProducts = Console::amountOfProducts();
+    system("cls");
+
+    for (int i = 1; i <= amountOfProducts; i++) {
+        Console::readProducts(productCode, brand, sport, typeOption, stock, shelf, price);
+        switch (typeOption)
         {
-            size = 0;
-            Console::enterTheSize();
-            size = Console::readFromKeyboard<int>();
-            clothingSize.push_back(size);
-        }
-        Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, stock, shelf, price);
-        clothes.push_back(newClothing);
-        products.push_back(newClothing);
-        break;
-    }
-    case 2:
-    {
-        type = "Shoe";
-        vector <int> shoeSize;
-        for (int i = 0; i < stock; i++)
+        case 1:
         {
-            size = 0 ;
-            Console::enterTheSize();
-            size = Console::readFromKeyboard<int>();
-            shoeSize.push_back(size);
+            type = "Clothing";
+            vector <int> clothingSize;
+            Console::enterTheGarment();
+            garment = Console::readFromKeyboard<string>();
+            for (int i = 0; i < stock; i++)
+            {
+                size = 0;
+                Console::enterTheSize();
+                size = Console::readFromKeyboard<int>();
+                clothingSize.push_back(size);
+            }
+            Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, stock, shelf, price);
+            accumulatingCost = accumulatingCost + newClothing->getTotalCost();
+            cout << "Accumulated cost until now: " << accumulatingCost << endl;
+            system("pause");
+            clothes.push_back(newClothing);
+            products.push_back(newClothing);
+            break;
         }
-        Shoe* newShoe = new Shoe(shoeSize, productCode, brand, type, stock, shelf, price);
-        shoes.push_back(newShoe);
-        products.push_back(newShoe);
-        break;
+        case 2:
+        {
+            type = "Shoe";
+            vector <int> shoeSize;
+            for (int i = 0; i < stock; i++)
+            {
+                size = 0;
+                Console::enterTheSize();
+                size = Console::readFromKeyboard<int>();
+                shoeSize.push_back(size);
+            }
+            Shoe* newShoe = new Shoe(shoeSize, productCode, brand, type, stock, shelf, price);
+            accumulatingCost = accumulatingCost + newShoe->getTotalCost();
+            cout << "Accumulated cost until now: " << accumulatingCost << endl;
+            system("pause");
+            shoes.push_back(newShoe);
+            products.push_back(newShoe);
+            break;
+        }
+        case 3:
+        {
+            type = "Ball";
+            int weight;
+            Console::enterTheWeight();
+            weight = Console::readFromKeyboard<int>();
+            Ball* newBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
+            accumulatingCost = accumulatingCost + newBall->getTotalCost();
+            cout << "Accumulated cost until now: " << accumulatingCost << endl;
+            system("pause");
+            balls.push_back(newBall);
+            products.push_back(newBall);
+            break;
+        }
+        case 4:
+        {
+            type = "Accessory";
+            string bodyPart;
+            Console::enterBodyPart();
+            bodyPart = Console::readFromKeyboard<string>();
+            Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
+            accumulatingCost = accumulatingCost + newAccessory->getTotalCost();
+            cout << "Accumulated cost until now: " << accumulatingCost << endl;
+            system("pause");
+            accessories.push_back(newAccessory);
+            products.push_back(newAccessory);
+            break;
+        }
+        default:
+        {
+            Console::invalid();
+            break;
+        }
+        }
+        system("cls");
     }
-    case 3:
-    {
-        type = "Ball";
-        int weight;
-        Console::enterTheWeight();
-        weight = Console::readFromKeyboard<int>();
-        Ball* newBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
-        balls.push_back(newBall);
-        products.push_back(newBall);
-        break;
-    }
-    case 4:
-    {
-        type = "Accessory";
-        string bodyPart;
-        Console::enterBodyPart();
-        bodyPart = Console::readFromKeyboard<string>();
-        Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
-        accessories.push_back(newAccessory);
-        products.push_back(newAccessory);
-        break;
-    }
-    default:
-    {
-        Console::invalid();
-        break;
-    }
-    }
+    cout << "Presupuesto previo: " << owner->getBudget() << endl;
+    int currentBudget = owner->getBudget();
+    int newBudget = currentBudget - accumulatingCost;
+    owner->setBudget(newBudget);
+    cout << "Presupuesto ha sido actualizado exitosamente!" << endl;
+    cout << "Presupuesto despues de hacer las compras del proveedor: " << newBudget << endl;
 }
 void Store::showProduct()
 {
