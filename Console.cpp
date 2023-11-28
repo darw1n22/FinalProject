@@ -11,6 +11,11 @@ void Console::printSeparator()
     cout << "--------------------------------------------------------" << endl;
 }
 
+void Console::printSpace()
+{
+    cout << " ";
+}
+
 void Console::showMainMenu()
 {
     system("CLS");
@@ -258,4 +263,40 @@ void Console::enterPersonId()
 void Console::inactivePromotion()
 {
     cout << "No promotions available at the moment." << endl;
+}
+
+void Console::invoiceDesing(Client* clientToBuy, Staff* staffToSell, vector<Product*> productsSold, float amountOfPurchase)
+{
+    cout << clientToBuy->getId();
+    Console::printSpace();
+    cout << clientToBuy->getName();
+    Console::printSpace();
+    cout << clientToBuy->getLastname();
+    Console::printEndline();
+    Console::printSeparator();
+    for (Product* product : productsSold)
+    {
+        cout << product->getProductCode();
+        Console::printSpace();
+        cout << product->getType();
+        Console::printSpace();
+        cout << product->getBrand();
+        Console::printSpace();
+        cout << product->getStock();
+        Console::printSpace();
+        cout << product->getPrice() * product->getStock();
+        Console::printEndline();
+    }
+    Console::printSeparator();
+    cout << amountOfPurchase;
+    Console::printEndline();
+    Console::printSeparator();
+    cout << staffToSell->getId();
+    Console::printSpace();
+    cout << staffToSell->getName();
+    Console::printSpace();
+    cout << staffToSell->getLastname();
+    Console::printSpace();
+    cout << staffToSell->getJobTitle();
+    Console::printEndline();
 }

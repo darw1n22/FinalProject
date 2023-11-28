@@ -602,6 +602,8 @@ void Store::makePurchase()
     Client* clientToBuy = nullptr;
     Staff* staffToSell = nullptr;
     Product* productToBuy = nullptr;
+    vector <Product*> productsPurchased;
+    int quantity;
     cout << "Enter the client's ID: ";
     cin >> clientId;
     cout << "Enter the staff's ID: ";
@@ -626,38 +628,39 @@ void Store::makePurchase()
     cin >> productCode;
     for (Product* product : products) {
         if (product->getProductCode() == productCode) {
-
             productToBuy = product;
+            cout << "Enter the quantity of the product to purchase: ";
+            cin >> quantity;
+            if (quantity < 1) {
+                cout << "Invalid input for quantity. The quantity of the product must be greater than or equal to 1." << endl;
+                return;
+            }
+            if (quantity > productToBuy->getStock()) {
+                cout << "You can't buy the product as you are trying to buy a quantity greater than the stock of the product!!!" << endl;
+                return;
+            }
+            else
+            {
+                productToBuy->setStock(productToBuy->getStock() - quantity);
+            }
+            product->setStock(quantity);
+            productsPurchased.push_back(product);
         }
     }
     if (productToBuy == nullptr) {
         cout << "Product not found. Please check the product code." << endl;
         return;
     }
-    int quantity;
-    cout << "Enter the quantity of the product to purchase: ";
-    cin >> quantity;
-    if (quantity < 1) {
-        cout << "Invalid input for quantity. The quantity of the product must be greater than or equal to 1." << endl;
-        return;
-    }
-    if (quantity > productToBuy->getStock()) {
-        cout << "You can't buy the product as you are trying to buy a quantity greater than the stock of the product!!!" << endl;
-        return;
-    }
-    else
-    {
-        productToBuy->setStock(productToBuy->getStock() - quantity);
-    }
+
     float productPrice = productToBuy->getPrice() * quantity;
     if (clientToBuy->getIsPremium()) {
         productPrice *= 0.85;
     }
-    float TotalPurchases = productPrice + clientToBuy->getTotalPurchases();
+    float totalPurchases = productPrice + clientToBuy->getTotalPurchases();
     int numPurchases = quantity + clientToBuy->getNumPurchases();
     int productsSold = quantity + staffToSell->getProductsSold();
     clientToBuy->setPurchases(productPrice);
-    clientToBuy->setTotalPurchases(TotalPurchases);
+    clientToBuy->setTotalPurchases(totalPurchases);
     clientToBuy->setNumPurchases(numPurchases);
     staffToSell->setProductsSold(productsSold);
     cout << "Purchase successful!" << endl;
@@ -665,7 +668,10 @@ void Store::makePurchase()
     cout << "Product Brand: " << productToBuy->getBrand() << endl;
     cout << "Product Type: " << productToBuy->getType() << endl;
     cout << "Total Price of the items: " << productPrice << endl;
-    cout << "Total Purchases of the client: " << TotalPurchases << endl;
+    cout << "Total Purchases of the client: " << totalPurchases << endl;
+    Invoice* newInvoice = new Invoice(clientToBuy, staffToSell, productsPurchased, totalPurchases);
+    sales.push_back(newInvoice);
+    newInvoice->showInvoice();
 }
 void Store::purchaseMenu()
 {

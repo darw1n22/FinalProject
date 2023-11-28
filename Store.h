@@ -16,6 +16,7 @@
 #include "LoadData.h"
 #include "TxtLocalLoader.h"
 #include "QuickSort.h"
+#include "Invoice.h"
 
 class Store
 {
@@ -32,6 +33,7 @@ private:
 	vector <Shoe*> shoes;
 	vector <Ball*> balls;
 	vector <Accessory*> accessories;
+	vector <Invoice*> sales;
 
 	LoadData* load;
 

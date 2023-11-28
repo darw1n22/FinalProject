@@ -1,8 +1,12 @@
 #pragma once
 #include <iostream>
+#include "Client.h"
+#include "Staff.h"
+#include "Product.h"
 
 using namespace std;
 
+class Product;
 class Console
 {
 private:
@@ -10,6 +14,7 @@ private:
 public:
 	static void printEndline();
 	static void printSeparator();
+	static void printSpace();
 	////////////////////////// STORE //////////////////////////
 	static void showMainMenu();
 	template <typename T> static T readFromKeyboard();
@@ -54,5 +59,6 @@ public:
 
 	////////////////////////// SALES //////////////////////////
 	static void inactivePromotion();
+	static void invoiceDesing(Client* clientToBuy, Staff* staffToSell, vector<Product*> productsSold, float amountOfPurchase);
 };
 
