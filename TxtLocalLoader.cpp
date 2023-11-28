@@ -101,3 +101,64 @@ vector<Owner*> TxtLocalLoader::vecOwner()
 
 	return vecOwner;
 }
+
+vector<Ball*> TxtLocalLoader::vecBall()
+{
+	int weight, stock, shelf;
+	float price;
+	string sport, brand, type;
+	long productCode;
+	ifstream archivo("ball.txt");
+
+	vector<Ball*> vecBall;
+
+	while (archivo.good()) {
+		archivo >> weight;
+		archivo >> sport;
+		archivo >> productCode;
+		archivo >> brand;
+		archivo >> type;
+		archivo >> stock;
+		archivo >> shelf;
+		archivo >> price;
+
+		Ball* ptrBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
+
+		vecBall.push_back(ptrBall);
+
+	}
+	archivo.close();
+
+	return vecBall;
+}
+
+vector<Accessory*> TxtLocalLoader::vecAccesory()
+{
+	int stock, shelf;
+	float price;
+	string bodyPart, brand, type;
+	long productCode;
+	ifstream archivo("accesory.txt");
+
+	vector<Accessory*> vecAccesory;
+
+	while (archivo.good()) {
+		archivo >> bodyPart;
+		archivo >> productCode;
+		archivo >> brand;
+		archivo >> type;
+		archivo >> stock;
+		archivo >> shelf;
+		archivo >> price;
+
+		Accessory* ptrAccesory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
+
+		vecAccesory.push_back(ptrAccesory);
+
+	}
+	archivo.close();
+
+	return vecAccesory;
+}
+
+

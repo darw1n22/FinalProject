@@ -2,6 +2,8 @@
 #include "Client.h"
 #include "Staff.h"
 #include "Owner.h"
+#include "Clothing.h"
+#include "Shoe.h"
 #include "LoadData.h"
 #include <vector>
 #include <iostream>	
@@ -16,4 +18,8 @@ public:
 	vector<Client*> vecClient();
 	vector<Staff*> vecStaff();
 	vector<Owner*> vecOwner();
+	vector<Ball*> vecBall();
+	vector<Clothing*> vecClothing();
+	vector<Shoe*> vecShoe();
+	vector<Accessory*> vecAccesory();
 };
