@@ -83,7 +83,6 @@ void Console::showProductsMenu()
     cout << "4. Accessories" << endl;
     cout << "5. All products" << endl;
     cout << "0. Return to main manu" << endl;
-    cout << "BORRAME" << endl;
     cout << "Please enter a valid option: ";
 }
 
