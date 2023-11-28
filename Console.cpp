@@ -32,6 +32,7 @@ void Console::showMainMenu()
     cout << "10. Raise salary of staff member" << endl;
     cout << "11. Search a product" << endl;
     cout << "12. Show full inventory" << endl;
+    cout << "13. Edit data based on the amount of employees and clients" << endl;
     cout << "0. Exit the menu" << endl;
     cout << "Please enter a valid option: ";
 }

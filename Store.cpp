@@ -1565,6 +1565,10 @@ void Store::showMenu()
             showFullInventory();
             system("Pause");
             break;
+        case 13:
+            showTotalClientsAndEmployeesToMakeChanges();
+            system("Pause");
+            break;
         default:
             Console::invalid();
             system("Pause");
