@@ -1277,6 +1277,16 @@ void Store::showFullInventory()
         }
         case 5:
         {
+            cout<< "Do you want to sort the products by price? (1 for yes, 2 for no): "<<endl;
+            int option;
+            cin>>option;
+            if (option == 1)
+            {
+                QuickSort<Clothing>::sort(clothes);
+                QuickSort<Shoe>::sort(shoes);
+                QuickSort<Ball>::sort(balls);
+                QuickSort<Accessory>::sort(accessories);
+            }
             Console::showTitlesOfProducts("CLOTHING");
             for (Clothing* clothing : clothes)
             {

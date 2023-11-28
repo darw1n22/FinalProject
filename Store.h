@@ -15,6 +15,7 @@
 #include "Console.h"
 #include "LoadData.h"
 #include "TxtLocalLoader.h"
+#include "QuickSort.h"
 
 class Store
 {
