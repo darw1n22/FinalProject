@@ -7,7 +7,7 @@ using namespace std;
 class Owner :public Person
 {
 private:
-	int budget;
+	int budget = 0;
 	//Person* person;
 public:
 	/*

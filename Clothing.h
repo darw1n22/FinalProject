@@ -7,7 +7,7 @@ private:
 	vector <int> clothingSize;
 	string garment;
 public:
-	Clothing(vector <int> clothingSize, string garment, long productCode, string brand, string type, int stock, int shelf, float price);
+	Clothing(vector <int> clothingSize, string garment, long productCode, string brand, string type, string color, int stock, int shelf, float price);
 
 	vector <int> getClothingSize();
 	string getGarment();

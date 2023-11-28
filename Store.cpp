@@ -737,7 +737,7 @@ void Store::raiseSalaryDependingOnNumberSold()
 void Store::registerAProduct()
 {
     long productCode;
-    string brand, type, sport, garment;
+    string brand, type, color, garment;
     int typeOption, stock, shelf, size;
     float price;
     int accumulatingCost = 0;
@@ -745,7 +745,7 @@ void Store::registerAProduct()
     system("cls");
 
     for (int i = 1; i <= amountOfProducts; i++) {
-        Console::readProducts(productCode, brand, sport, typeOption, stock, shelf, price);
+        Console::readProducts(productCode, brand, color, typeOption, stock, shelf, price);
         switch (typeOption)
         {
         case 1:
@@ -761,7 +761,7 @@ void Store::registerAProduct()
                 size = Console::readFromKeyboard<int>();
                 clothingSize.push_back(size);
             }
-            Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, stock, shelf, price);
+            Clothing* newClothing = new Clothing(clothingSize, garment, productCode, brand, type, color, stock, shelf, price);
             accumulatingCost = accumulatingCost + newClothing->getTotalCost();
             cout << "Accumulated cost until now: " << accumulatingCost << endl;
             system("pause");
@@ -780,7 +780,7 @@ void Store::registerAProduct()
                 size = Console::readFromKeyboard<int>();
                 shoeSize.push_back(size);
             }
-            Shoe* newShoe = new Shoe(shoeSize, productCode, brand, type, stock, shelf, price);
+            Shoe* newShoe = new Shoe(shoeSize, productCode, brand, type, color, stock, shelf, price);
             accumulatingCost = accumulatingCost + newShoe->getTotalCost();
             cout << "Accumulated cost until now: " << accumulatingCost << endl;
             system("pause");
@@ -792,9 +792,11 @@ void Store::registerAProduct()
         {
             type = "Ball";
             int weight;
+            string sport;
             Console::enterTheWeight();
             weight = Console::readFromKeyboard<int>();
-            Ball* newBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
+            Console::enterTheSport();
+            Ball* newBall = new Ball(weight, sport, productCode, brand, type, color, stock, shelf, price);
             accumulatingCost = accumulatingCost + newBall->getTotalCost();
             cout << "Accumulated cost until now: " << accumulatingCost << endl;
             system("pause");
@@ -808,7 +810,7 @@ void Store::registerAProduct()
             string bodyPart;
             Console::enterBodyPart();
             bodyPart = Console::readFromKeyboard<string>();
-            Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
+            Accessory* newAccessory = new Accessory(bodyPart, productCode, brand, type, color, stock, shelf, price);
             accumulatingCost = accumulatingCost + newAccessory->getTotalCost();
             cout << "Accumulated cost until now: " << accumulatingCost << endl;
             system("pause");

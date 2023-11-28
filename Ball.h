@@ -7,7 +7,7 @@ private:
 	int weight;
 	string sport;
 public:
-	Ball(int weight, string sport, long productCode, string brand, string type, int stock, int shelf, float price);
+	Ball(int weight, string sport, long productCode, string brand, string type, string color, int stock, int shelf, float price);
 	int getWeight();
 	string getSport();
 	void showInfo();

@@ -6,11 +6,10 @@ Product::Product(long productCode, string brand, string type, string color, int 
 	this->productCode = productCode;
 	this->brand = brand;
 	this->type = type;
+	this->color = color;
 	this->stock = stock;
 	this->shelf = shelf;
 	this->price = price;
-	this->color = color;
-
 }
 Product::~Product()
 {

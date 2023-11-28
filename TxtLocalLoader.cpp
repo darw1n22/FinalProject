@@ -108,6 +108,7 @@ vector<Ball*> TxtLocalLoader::vecBall()
 	float price;
 	string sport, brand, type;
 	long productCode;
+	string color = "Black";
 	ifstream archivo("ball.txt");
 
 	vector<Ball*> vecBall;
@@ -122,7 +123,7 @@ vector<Ball*> TxtLocalLoader::vecBall()
 		archivo >> shelf;
 		archivo >> price;
 
-		Ball* ptrBall = new Ball(weight, sport, productCode, brand, type, stock, shelf, price);
+		Ball* ptrBall = new Ball(weight, sport, productCode, brand, type, color, stock, shelf, price);
 
 		vecBall.push_back(ptrBall);
 
@@ -138,6 +139,7 @@ vector<Accessory*> TxtLocalLoader::vecAccesory()
 	float price;
 	string bodyPart, brand, type;
 	long productCode;
+	string color = "red";
 	ifstream archivo("accesory.txt");
 
 	vector<Accessory*> vecAccesory;
@@ -151,7 +153,7 @@ vector<Accessory*> TxtLocalLoader::vecAccesory()
 		archivo >> shelf;
 		archivo >> price;
 
-		Accessory* ptrAccesory = new Accessory(bodyPart, productCode, brand, type, stock, shelf, price);
+		Accessory* ptrAccesory = new Accessory(bodyPart, productCode, brand, type, color, stock, shelf, price);
 
 		vecAccesory.push_back(ptrAccesory);
 
