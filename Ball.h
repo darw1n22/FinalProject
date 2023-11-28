@@ -11,5 +11,7 @@ public:
 	int getWeight();
 	string getSport();
 	void showInfo();
+	bool operator<=(Ball& b);
+	bool operator>=(Ball& b);
 };
 

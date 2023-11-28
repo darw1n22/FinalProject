@@ -17,3 +17,13 @@ void Accessory::showInfo()
 	Product::showInfo();
 	Console::showAccessory(bodyPart);
 }
+
+bool Accessory::operator<=(Accessory& a)
+{
+	return this->getProductCode() <= a.getProductCode();
+}
+
+bool Accessory::operator>=(Accessory& a)
+{
+	return this->getProductCode() >= a.getProductCode();
+}

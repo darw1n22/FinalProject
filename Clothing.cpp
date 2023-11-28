@@ -28,3 +28,13 @@ void Clothing::showInfo()
 	}
 	Console::printEndline();
 }
+
+bool Clothing::operator<=(Clothing& c)
+{
+	return this->getProductCode() <= c.getProductCode();
+}
+
+bool Clothing::operator>=(Clothing& c)
+{
+	return this->getProductCode() >= c.getProductCode();
+}

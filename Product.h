@@ -24,5 +24,7 @@ public:
 	float getPrice();
 	void setPrice(float newPrice);
 	virtual void showInfo();
+	bool operator<=(Product& p);
+	bool operator>=(Product& p);
 };
 

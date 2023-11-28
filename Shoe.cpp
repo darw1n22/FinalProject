@@ -20,3 +20,13 @@ void Shoe::showInfo()
 	}
 	Console::printEndline();
 }
+
+bool Shoe::operator<=(Shoe& s)
+{
+	return this->getProductCode() <= s.getProductCode();
+}
+
+bool Shoe::operator>=(Shoe& s)
+{
+	return this->getProductCode() >= s.getProductCode();
+}

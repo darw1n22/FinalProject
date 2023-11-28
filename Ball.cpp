@@ -21,3 +21,13 @@ void Ball::showInfo()
 	Product::showInfo();
 	Console::showBall(weight, sport);
 }
+
+bool Ball::operator<=(Ball& b)
+{
+	return this->getProductCode() <= b.getProductCode();
+}
+
+bool Ball::operator>=(Ball& b)
+{
+	return this->getProductCode() >= b.getProductCode();
+}

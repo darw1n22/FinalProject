@@ -9,4 +9,6 @@ public:
 	Accessory(string bodyPart, long productCode, string brand, string type, int stock, int shelf, float price);
 	string getBodyPart();
 	void showInfo();
+	bool operator<=(Accessory& a);
+	bool operator>=(Accessory& a);
 };

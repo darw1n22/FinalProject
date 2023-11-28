@@ -12,6 +12,8 @@ public:
 	vector <int> getClothingSize();
 	string getGarment();
 	void showInfo();
+	bool operator<=(Clothing& c);
+	bool operator>=(Clothing& c);
 };
 
 

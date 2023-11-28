@@ -58,3 +58,13 @@ void Product::showInfo()
 {
 	Console::showProductInformation(productCode, brand, type, color, stock, shelf, price);
 }
+
+bool Product::operator<=(Product& p)
+{
+	return this->productCode <= p.productCode;
+}
+
+bool Product::operator>=(Product& p)
+{
+	return this->productCode >= p.productCode;
+}

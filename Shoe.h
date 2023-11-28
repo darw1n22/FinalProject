@@ -11,5 +11,7 @@ public:
 
 	vector <int> getShoeSize();
 	void showInfo();
+	bool operator<=(Shoe& s);
+	bool operator>=(Shoe& s);
 };
 
