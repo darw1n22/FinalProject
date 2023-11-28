@@ -1579,7 +1579,7 @@ void Store::showMenu()
 }
 void Store::run()
 {
-    DataLoading* ptr = new TxtLocalLoader();
+    DataLoader* ptr = new TxtLocalLoader();
     clients = ptr->vecClient();
     staffs = ptr->vecStaff();
     showMenu();

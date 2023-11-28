@@ -13,7 +13,7 @@
 #include<Windows.h>
 #include<conio.h>
 #include "Console.h"
-#include "DataLoading.h"
+#include "DataLoader.h"
 #include "TxtLocalLoader.h"
 #include "QuickSort.h"
 #include "Invoice.h"
@@ -35,7 +35,7 @@ private:
 	vector <Accessory*> accessories;
 	vector <Invoice*> sales;
 
-	DataLoading* load;
+	DataLoader* load;
 
 	void showMenu();
 	void addPersonInfo(long& id, long& phone, string& name, string& lastname, string& email, string& address, int& gender, int& age);

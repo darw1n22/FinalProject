@@ -107,7 +107,7 @@
     <ClInclude Include="Clothing.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Invoice.h" />
-    <ClInclude Include="DataLoading.h" />
+    <ClInclude Include="DataLoader.h" />
     <ClInclude Include="Owner.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Person.h" />
@@ -126,7 +126,7 @@
     <ClCompile Include="Clothing.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Invoice.cpp" />
-    <ClCompile Include="DataLoading.cpp" />
+    <ClCompile Include="DataLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Owner.cpp" />
     <ClCompile Include="pch.cpp">
