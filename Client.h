@@ -31,6 +31,7 @@ public:
         cout << "Total Purchases: " << totalPurchases << endl;
         cout << "Number of purchases: " << numPurchases << endl;
     }
+    void showClientInfo();
 };
 
 

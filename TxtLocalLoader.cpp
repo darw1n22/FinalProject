@@ -10,9 +10,10 @@ TxtLocalLoader::TxtLocalLoader() {
 vector<Client*> TxtLocalLoader::vecClient()
 {
 	long id, phone;
-	int gender, age, purchases, totalPurchases, numPurchases;
+	int gender, age, numPurchases;
 	string name, lastName, email, address;
 	bool isPremium;
+	float purchases, totalPurchases;
 	ifstream archivo("clients.txt");
 
 	vector<Client*> vecClient;
@@ -31,6 +32,8 @@ vector<Client*> TxtLocalLoader::vecClient()
 		archivo >> totalPurchases;
 		archivo >> numPurchases;
 		Client* ptrClient = new Client(id, name, lastName, gender, email, address, phone, age, isPremium, purchases, totalPurchases, numPurchases);
+							/*long id, string name, string lastname, int gender, string email, string address, long phone, int age, bool isPremium, float purchases, 
+	float totalPurchases, int numPurchases*/
 		vecClient.push_back(ptrClient);
 
 	}

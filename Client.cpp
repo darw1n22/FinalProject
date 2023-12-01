@@ -53,3 +53,36 @@ void Client::setNumPurchases(int newnumPurchases)
 {
     numPurchases = newnumPurchases;
 }
+
+void Client::showClientInfo()
+{
+    /*id, string name, string lastname, int gender, string email, string address, long phone, int age, bool isPremium, float purchases, float totalPurchases, int numPurchases)
+    :Person(id,name,lastname,gender,email,address,phone,age*/
+    cout << "--CLIENT INFO--" << endl;
+    cout << "ID: " << id << endl;
+    cout << "Name: " << name << endl;
+    cout << "Surname: " << lastname << endl;
+    cout << "Gender: " << gender << endl;
+    cout << "Age: " << age << endl;
+    cout << "Email: " << email << endl;
+    cout << "Address: " << address << endl;
+    cout << "Phone: " << phone << endl;
+    cout << "Premium: " << isPremium << endl;
+    cout << "Purchases: " << purchases << endl;
+    cout << "Total purchases: " << totalPurchases << endl;
+    cout << "Number of purchases: " << numPurchases << endl;
+    /*
+    cout << "ID: " << id << endl;
+	cout << "Name: " << name << endl;
+	cout << "Lastname: " << lastname << endl;
+	cout << "Gender: " << gender << endl;
+	cout << "Age: " << age << endl;
+	cout << "Email: " << email << endl;
+	cout << "Address: " << address << endl;
+	cout << "Phone: " << phone << endl;
+    cout << "Is Premium: " << (isPremium ? "Yes" : "No") << endl;
+    cout << "Purchases: " << purchases << endl;
+    cout << "Total Purchases: " << totalPurchases << endl;
+    cout << "Number of purchases: " << numPurchases << endl;
+    */
+}
