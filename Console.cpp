@@ -26,9 +26,9 @@ void Console::showMainMenu()
     cout << "4. Edit Person Information" << endl;
     cout << "5. Show Person Info" << endl;
     cout << "6. Show Client by type (Premium or Standard)" << endl;
-    cout << "7. make a purchase" << endl;
+    cout << "7. Make a purchase" << endl;
     cout << "8. Register a product" << endl;
-    cout << "9. show Product" << endl;
+    cout << "9. Show Product" << endl;
     cout << "10. Raise salary of staff member" << endl;
     cout << "11. Search a product" << endl;
     cout << "12. Show full inventory" << endl;

@@ -1582,5 +1582,7 @@ void Store::run()
     DataLoader* ptr = new TxtLocalLoader();
     clients = ptr->vecClient();
     staffs = ptr->vecStaff();
+    balls = ptr->vecBall();
+    accessories = ptr->vecAccesory();
     showMenu();
 }
